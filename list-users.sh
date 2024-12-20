@@ -48,7 +48,14 @@ function list_users_with_read_access {
     fi
 }
 
-# Main script
+function check_repo_owner_and_name {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "The parameters are missing. Usage: $0 <REPO_OWNER> <REPO_NAME>"
+        exit 1
+    fi
+}
 
+# Main script
+check_repo_owner_and_name "$REPO_OWNER" "$REPO_NAME"
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}..."
 list_users_with_read_access
